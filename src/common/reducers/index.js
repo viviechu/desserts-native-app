@@ -1,5 +1,5 @@
-import counter from './counter';
+import signup from './signup';
 
 export {
-  counter
+  signup
 };

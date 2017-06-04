@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setFormField } from '../common/actions/signup';
 import {
   StyleSheet,
   View,
@@ -43,12 +45,38 @@ input: {
   borderColor: 'white',
   borderRadius: 8,
   color: 'white'
+},
+button: {
+  height: 45,
+  flexDirection: 'row',
+  backgroundColor: 'white',
+  borderColor: 'white',
+  borderWidth: 1,
+  borderRadius: 8,
+  marginBottom: 10,
+  marginTop: 10,
+  alignSelf: 'stretch',
+  justifyContent: 'center'
+},
+buttonText: {
+  fontSize: 18,
+  color: '#111',
+  alignSelf: 'center'
 }
 });
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
+  }
+
+  _onChange(field, event) {
+    const value = event.nativeEvent.text
+    this.props.dispatchSetFormField(field, value);
+  }
+
+  _onSubmit() {
+
   }
 
   render() {
@@ -58,7 +86,17 @@ export default class SignUp extends Component {
             <Text style={styles.title}> Sign Up with Email </Text>
             <TextInput
               style={styles.input}
+              placeholder="Email Address"
+              placeholderTextColor="white"
+              value={ this.props.userEmail }
+              onChange={ this._onChange.bind(this, 'Email') }
                />
+            <TouchableHighlight
+               style={styles.button}
+               onPress={this._onSubmit.bind(this)}
+               underlayColor="white">
+                   <Text style={styles.buttonText}> GET STARTED </Text>
+             </TouchableHighlight>
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerText}>
@@ -69,3 +107,21 @@ export default class SignUp extends Component {
     )
   }
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    isLoading: state.signup.isLoading,
+    userEmail: state.signup.userEmail,
+    userPassword: state.signup.userPassword,
+    showError: state.signup.showError,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchSetFormField(field, value) {
+      dispatch(setFormField(field, value));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
