@@ -39,13 +39,6 @@ const styles = StyleSheet.create({
    padding: 10,
    margin: 20,
  },
- subHeading: {
-   fontSize: 15,
-   fontWeight: "500",
-   color: '#fff',
-   padding: 10,
-   margin: 0,
- },
 });
 
 export default class Home extends Component {
@@ -80,24 +73,15 @@ export default class Home extends Component {
         </View>
          <View style={styles.slide}>
            <Image source={require('../../static/images/v3_background.png')} style={styles.backgroundImage}>
-               <Text style={styles.subHeading}>
-                 After purchasing a monthly subscription,
-               </Text>
-                <Text style={styles.subHeading}>
-                  you will receive an email with
-                </Text>
-                <Text style={styles.subHeading}>
-                  vouchers during the first day of every month.
+                <Text style={styles.heading}>
+                  Receive 4 vouchers every month
                 </Text>
           </Image>
          </View>
          <View style={styles.slide}>
            <Image source={require('../../static/images/v2_background.png')} style={styles.backgroundImage}>
-             <Text style={styles.subHeading}>
-               Venture out to all of the locations
-             </Text>
-             <Text style={styles.subHeading}>
-               we&#39;ve hand-picked for you.
+             <Text style={styles.heading}>
+               Venture out to all the sweet treats!
              </Text>
           </Image>
          </View>
