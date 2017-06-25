@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setFormField } from '../common/actions/signup';
+import Dashboard from './Dashboard';
+
 import {
   StyleSheet,
   View,
@@ -40,6 +42,7 @@ input: {
   height: 50,
   padding: 4,
   marginRight: 5,
+  marginBottom: 10,
   fontSize: 23,
   borderWidth: 1,
   borderColor: 'white',
@@ -76,7 +79,10 @@ class SignUp extends Component {
   }
 
   _onSubmit() {
-
+      this.props.navigator.push({
+        title: 'Desserts',
+        component: Dashboard
+      })
   }
 
   render() {
@@ -91,6 +97,13 @@ class SignUp extends Component {
               value={ this.props.userEmail }
               onChange={ this._onChange.bind(this, 'Email') }
                />
+             <TextInput
+               style={styles.input}
+               placeholder="Password"
+               placeholderTextColor="white"
+               value={ this.props.userPassword }
+               onChange={ this._onChange.bind(this, 'Password') }
+                />
             <TouchableHighlight
                style={styles.button}
                onPress={this._onSubmit.bind(this)}
