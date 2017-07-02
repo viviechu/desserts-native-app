@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
  heading: {
    fontSize: 20,
    fontWeight: "500",
-   color: '#fff',
+   color: '#F5F5F5',
    padding: 10,
    margin: 20,
  },
