@@ -7,8 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "native-base": "^2.2.0",
+    "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
-    "react-native": "0.43.4",
+    "react-native": "0.44.0",
+    "react-native-maps": "^0.15.3",
     "react-native-swiper": "^1.5.4",
     "react-native-tab-view": "0.0.66",
     "react-navigation": "^1.0.0-beta.11",
@@ -19,6 +22,11 @@
   "devDependencies": {
     "babel-jest": "19.0.0",
     "babel-preset-react-native": "1.9.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
     "jest": "19.0.2",
     "react-test-renderer": "16.0.0-alpha.6"
   },

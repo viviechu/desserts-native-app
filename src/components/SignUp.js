@@ -80,7 +80,7 @@ class SignUp extends Component {
 
   _onSubmit() {
       this.props.navigator.push({
-        title: 'Desserts',
+        title: 'Dashboard',
         component: Dashboard
       })
   }
