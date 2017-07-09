@@ -1,37 +1,11 @@
 import React, { Component } from 'react'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import PropTypes from 'prop-types'
 import {
   StyleSheet,
   View,
   Text,
-  TouchableHighlight,
-} from 'react-native';
-
-
-class MapLabel extends Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    const {label} = this.props
-    return (
-      <View style={[styles.container, this.props.style]}>
-         <View style={styles.bubble}>
-           <View style={styles.amount}>
-             <Text style={styles.title}>{label.title}</Text>
-              <Text style={styles.description}>{label.description}</Text>
-             <TouchableHighlight
-                style={styles.button}
-                underlayColor="white">
-                    <Text style={styles.buttonText}> Yelp </Text>
-              </TouchableHighlight>
-           </View>
-         </View>
-         <View style={styles.arrowBorder} />
-         <View style={styles.arrow} />
-       </View>
-    );
-  }
-}
+} from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -70,6 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: -0.5,
+    marginBottom: 2,
     fontSize: 15,
     textAlign: 'center',
     color: '#23cfb9'
@@ -91,7 +66,43 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  yelpButton: {
+    fontFamily: 'Arial',
+    fontSize: 10,
+    color: 'white',
   }
-});
+})
+class MapLabel extends Component {
+  linkToYelp() {
+    console.log('herere')
 
-module.exports = MapLabel;
+  }
+  render() {
+    const { label } = this.props
+    const yelpButton = (
+      <Icon.Button name="yelp" backgroundColor="#d32323" onPress={this.linkToYelp} size={13}>
+        <Text style={styles.yelpButton}>Yelp Review</Text>
+      </Icon.Button>
+    )
+    return (
+      <View style={[styles.container, this.props.style]}>
+        <View style={styles.bubble}>
+          <View style={styles.amount}>
+            <Text style={styles.title}>{label.title}</Text>
+            {label.category === 'Food' ? yelpButton : null}
+          </View>
+        </View>
+        <View style={styles.arrowBorder} />
+        <View style={styles.arrow} />
+      </View>
+    )
+  }
+}
+
+
+MapLabel.propTypes = {
+  label: PropTypes.object.isRequired,
+}
+
+module.exports = MapLabel

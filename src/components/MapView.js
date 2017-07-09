@@ -35,22 +35,22 @@ class MapView extends Component {
       markers: [
         {
           title: 'Blue Note Jazz Festival',
-          description: 'Concert',
+          category: 'Concert',
           latlng: { latitude: 40.7070877, longitude: -74.0057347 }
         },
         {
           title: 'BRIC Celebrate Brooklyn Festival',
-          description: 'Concert',
+          category: 'Concert',
           latlng: { latitude: 40.6633672, longitude: -74.0466936 }
         },
         {
           title: 'Free Summer Concerts at MOMA',
-          description: 'Concert',
+          category: 'Concert',
           latlng: { latitude: 40.7614327, longitude: -74.0476619 }
         },
         {
           title: 'Shorty Tang',
-          description: 'Food',
+          category: 'Food',
           latlng: { latitude: 40.7404701, longitude: -74.0727109 }
         }
       ]
@@ -71,15 +71,15 @@ class MapView extends Component {
             longitudeDelta: 0.0421,
           }}
         >
-         {this.state.markers.map((marker, index) => (
-          <Map.Marker
-            coordinate={markers[index].latlng}
-            key={index}
-          >
-            <Map.Callout tooltip style={styles.labelView}>
-              <MapLabel label={marker}/>
-            </Map.Callout>
-          </Map.Marker>
+          {this.state.markers.map((marker, index) => (
+            <Map.Marker
+              coordinate={markers[index].latlng}
+              key={index}
+            >
+              <Map.Callout tooltip style={styles.labelView}>
+                <MapLabel label={marker} />
+              </Map.Callout>
+            </Map.Marker>
           ))}
         </Map>
       </View>
