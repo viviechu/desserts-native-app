@@ -36,26 +36,43 @@ class MapView extends Component {
         {
           title: 'Blue Note Jazz Festival',
           category: 'Concert',
-          latlng: { latitude: 40.7070877, longitude: -74.0057347 }
+          latlng: { latitude: 40.7070877, longitude: -74.0057347 },
+          color: 'red'
         },
         {
           title: 'BRIC Celebrate Brooklyn Festival',
           category: 'Concert',
-          latlng: { latitude: 40.6633672, longitude: -74.0466936 }
+          latlng: { latitude: 40.6633672, longitude: -74.0466936 },
+          color: 'red'
         },
         {
           title: 'Free Summer Concerts at MOMA',
           category: 'Concert',
-          latlng: { latitude: 40.7614327, longitude: -74.0476619 }
+          latlng: { latitude: 40.7614327, longitude: -74.0476619 },
+          color: 'red'
         },
         {
           title: 'Shorty Tang',
           category: 'Food',
-          latlng: { latitude: 40.7404701, longitude: -74.0727109 }
+          latlng: { latitude: 40.7404701, longitude: -74.0727109 },
+          color: 'red'
         }
       ]
     }
   }
+
+  onMapPress(e, index) {
+    let markers = this.state.markers
+    markers = this.state.markers.map((marker, i) => {
+      if (i === index) marker.color = 'orange'
+      else marker.color = 'red'
+      return marker
+    })
+    this.setState({
+      markers,
+    })
+  }
+
 
   render() {
     const { markers } = this.state
@@ -75,6 +92,8 @@ class MapView extends Component {
             <Map.Marker
               coordinate={markers[index].latlng}
               key={index}
+              onPress={(e, i) => this.onMapPress(e, index)}
+              pinColor={marker.color}
             >
               <Map.Callout tooltip style={styles.labelView}>
                 <MapLabel label={marker} />
