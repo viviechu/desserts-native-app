@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Button, Text } from 'native-base'
 import Map from 'react-native-maps'
 import {
   StyleSheet,
@@ -11,6 +12,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ebeef0',
+  },
+  filterbar: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10
   },
   title: {
     marginBottom: 20,
@@ -37,25 +44,47 @@ class MapView extends Component {
           title: 'Blue Note Jazz Festival',
           category: 'Concert',
           latlng: { latitude: 40.7070877, longitude: -74.0057347 },
-          color: 'red'
+          color: 'red',
+          startDate: '',
+          endDate: ''
         },
         {
           title: 'BRIC Celebrate Brooklyn Festival',
           category: 'Concert',
           latlng: { latitude: 40.6633672, longitude: -74.0466936 },
-          color: 'red'
+          color: 'red',
+          startDate: '',
+          endDate: ''
         },
         {
           title: 'Free Summer Concerts at MOMA',
           category: 'Concert',
           latlng: { latitude: 40.7614327, longitude: -74.0476619 },
-          color: 'red'
+          color: 'red',
+          startDate: '',
+          endDate: ''
         },
         {
           title: 'Shorty Tang',
           category: 'Food',
           latlng: { latitude: 40.7404701, longitude: -74.0727109 },
-          color: 'red'
+          color: 'red',
+          startDate: '',
+          endDate: ''
+        }
+      ],
+      filters: [
+        {
+          name: 'Today',
+          selected: false
+        },
+        {
+          name: 'This Week',
+          selected: false
+        },
+        {
+          name: 'This Weekend',
+          selected: false
         }
       ]
     }
@@ -73,11 +102,28 @@ class MapView extends Component {
     })
   }
 
+  onfilter(filter, index) {
+    const filters = this.state.filters
+    filters[index].selected = !filters[index].selected
+    this.setState({
+      filters,
+    })
+  }
+
 
   render() {
-    const { markers } = this.state
+    const { markers, filters } = this.state
     return (
       <View style={styles.container}>
+        <View style={styles.filterbar}>
+          {
+            filters.map((filter, i) => (
+              <Button bordered info small key={i} onPress={() => this.onfilter(filter, i)} style={{ borderColor: '#A9A9A9', backgroundColor: filter.selected ? '#00CED1' : 'white', marginRight: 5, padding: -8 }}>
+                <Text style={{ color: '#A9A9A9' }}>{filter.name}</Text>
+              </Button>
+            ))
+          }
+        </View>
         <Map
           style={styles.container}
           showsUserLocation
